@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    color: #e2e8f0;
+    background-color: #0f172a;
+    background-image: radial-gradient(circle at top right, rgba(99, 102, 241, 0.1), transparent 40%);
+    line-height: 1.6;
+}
+
+#mainHeader {
+    background: linear-gradient(135deg, #1e1b4b, #311042);
+    padding: 2rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#welcomeBanner {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border-left: 4px solid #6366f1;
+}
+
+#welcomeBanner h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #a5b4fc, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.highlight {
+    color: #f472b6;
+    font-weight: 600;
+}
+
+nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+nav a:hover, nav a:active {
+    color: #6366f1;
+}
+
+nav a:visited {
+    color: #818cf8;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+section {
+    background: rgba(30, 41, 59, 0.7);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #f8fafc;
+    border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.eventGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.eventCard {
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.eventCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: #1e293b;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+th {
+    background-color: #312e81;
+    color: #f8fafc;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #f8fafc;
+    margin-bottom: 1rem;
+    transition: outline 0.1s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: 2px solid #6366f1;
+}
+
+.news-article {
+    column-count: 2;
+    column-gap: 30px;
+    column-rule: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: justify;
+}
+
+.hidden-item {
+    display: none;
+}
+
+.invisible-item {
+    visibility: hidden;
+}
+
+button {
+    background: #6366f1;
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #4f46e5;
+}
+
+@media (max-width: 768px) {
+    #welcomeBanner h1 {
+        font-size: 2rem;
+    }
+    nav {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    .news-article {
+        column-count: 1;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}

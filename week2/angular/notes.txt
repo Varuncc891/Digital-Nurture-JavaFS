@@ -1,0 +1,9 @@
+angular.json - Configures CLI defaults, paths, and build targets.
+tsconfig.json - Core TypeScript configuration for compilation settings.
+tsconfig.app.json - Application-specific TypeScript compilation settings.
+package.json - Lists dependencies, devDependencies, and scripts.
+src/main.ts - Application entry point that bootstraps the root application config.
+app.config.ts - Standard configuration provider for standalone application routing.
+app.component.ts - The main root component of the Angular application.
+src/index.html - The index HTML shell file that holds the root app selector.
+budgets configuration - Controls warnings and errors when bundle sizes exceed specific thresholds to ensure optimal performance.

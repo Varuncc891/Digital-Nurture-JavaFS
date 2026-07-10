@@ -1,0 +1,24 @@
+git config --global user.name "Varun"
+git config --global user.email "varun@example.com"
+git init
+git add .
+git status
+git commit -m "initial commit"
+git log --oneline
+git branch feature
+git checkout feature
+git add index.html
+git commit -m "add feature content"
+git checkout master
+git merge feature
+git branch -d feature
+git remote add origin https://github.com/varun/student-course-portal.git
+git push -u origin master
+git pull origin master
+git checkout -b topic
+git commit -m "commit on topic"
+git checkout master
+git commit -m "commit on master"
+git rebase master topic
+git checkout master
+git merge topic

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Event Portal</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .event-card { border: 1px solid #ccc; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        #loadingSpinner { display: none; font-weight: bold; color: blue; }
+        .error { color: red; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <h1>Dynamic Event Portal</h1>
+
+    <section id="search-filter">
+        <h2>Filter Events</h2>
+        <input type="text" id="searchInput" placeholder="Search by name...">
+        <select id="categorySelect">
+            <option value="">All Categories</option>
+            <option value="Tech">Tech</option>
+            <option value="Art">Art</option>
+            <option value="Food">Food</option>
+        </select>
+    </section>
+
+    <div id="loadingSpinner">Loading events, please wait...</div>
+    <div id="eventsList"></div>
+
+    <section id="register-form">
+        <h2>Submit Event Inquiry</h2>
+        <form id="registrationForm">
+            <p>
+                <label for="name">Name:</label>
+                <input type="text" id="name" required>
+            </p>
+            <p>
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </p>
+            <p>
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" required>
+                <span id="phoneError" class="error"></span>
+            </p>
+            <p>
+                <label for="formEvent">Select Event ID:</label>
+                <input type="number" id="formEvent" required min="1" max="10">
+            </p>
+            <button type="submit">Send Inquiry</button>
+        </form>
+        <div id="formOutput"></div>
+    </section>
+
+    <script src="main.js"></script>
+</body>
+</html>

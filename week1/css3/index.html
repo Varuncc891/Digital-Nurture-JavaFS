@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Local Community Event Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header id="mainHeader">
+        <div id="welcomeBanner">
+            <h1>Welcome, Resident!</h1>
+            <span class="highlight">Special Offer: Early bird registration discount active!</span>
+        </div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#news">Bulletin</a>
+            <a href="#events">Events</a>
+            <a href="#register">Register</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>About Our Portal</h2>
+            <p>Our portal helps residents register for community events, view upcoming workshops, and submit feedback.</p>
+        </section>
+
+        <section id="news">
+            <h2>Community Bulletin</h2>
+            <div class="news-article">
+                The city council is pleased to announce the schedule for the summer community festivals. This year we have curated various meetups including technology sessions, art exhibitions, and culinary workshops to cater to all age groups. We encourage all residents to participate actively and make these events a huge success. Free parking will be provided near the venues, and volunteers will be available to assist those with access requirements. Please register early to ensure you get your preferred seat since seating capacity is limited for certain sessions.
+            </div>
+        </section>
+
+        <section id="compare-visibility">
+            <h2>Visibility Comparison</h2>
+            <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px;">
+                <p>Visible Box 1</p>
+                <div class="hidden-item" style="background: red; padding: 1rem; margin: 0.5rem 0;">This box is set to display: none</div>
+                <p>Visible Box 2</p>
+                <div class="invisible-item" style="background: blue; padding: 1rem; margin: 0.5rem 0;">This box is set to visibility: hidden</div>
+                <p>Visible Box 3</p>
+            </div>
+        </section>
+
+        <section id="events">
+            <h2>Upcoming Events Gallery</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Organizer</th>
+                        <th>Fee</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tech Meetup</td>
+                        <td>Alice Johnson</td>
+                        <td>$10</td>
+                    </tr>
+                    <tr>
+                        <td>Art Exhibition</td>
+                        <td>Bob Smith</td>
+                        <td>$5</td>
+                    </tr>
+                    <tr>
+                        <td>Baking Workshop</td>
+                        <td>Charlie Lee</td>
+                        <td>$15</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="register">
+            <h2>Register for an Event</h2>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" required placeholder="Enter full name">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" required placeholder="Enter email address">
+
+                <label for="eventType">Event Type:</label>
+                <select id="eventType">
+                    <option value="">Select Event</option>
+                    <option value="tech">Tech Meetup ($10)</option>
+                    <option value="art">Art Exhibition ($5)</option>
+                    <option value="baking">Baking Workshop ($15)</option>
+                </select>
+
+                <button type="submit">Submit Registration</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p style="text-align: center; padding: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); color: #64748b;">
+            &copy; 2026 City Council. All rights reserved.
+        </p>
+    </footer>
+</body>
+</html>

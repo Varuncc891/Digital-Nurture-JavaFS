@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+    <style>
+        .highlight { font-weight: bold; color: #007bff; }
+        #welcomeBanner { background-color: #e3f2fd; padding: 15px; margin-bottom: 20px; }
+        .zoomed { transform: scale(1.5); transition: transform 0.3s; }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="welcomeBanner">
+            <h1>Welcome, Resident!</h1>
+            <span style="color: red; font-weight: bold;">Special Offer: Early bird registration discount active!</span>
+        </div>
+        <nav>
+            <a href="#about">About</a> | 
+            <a href="#events">Events</a> | 
+            <a href="#register">Register</a> | 
+            <a href="help.html" target="_blank">Help</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>About Our Portal</h2>
+            <p>Our portal helps residents register for community events, view upcoming workshops, and submit feedback.</p>
+        </section>
+
+        <section id="events">
+            <h2>Upcoming Events Gallery</h2>
+            <table border="1">
+                <tr>
+                    <td>
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' fill='green'/></svg>" alt="Tech Meetup" title="Tech Meetup" id="img1" ondblclick="zoomImage('img1')">
+                        <br><caption>Tech Meetup</caption>
+                    </td>
+                    <td>
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' fill='blue'/></svg>" alt="Art Exhibition" title="Art Exhibition" id="img2" ondblclick="zoomImage('img2')">
+                        <br><caption>Art Exhibition</caption>
+                    </td>
+                    <td>
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' fill='red'/></svg>" alt="Baking Workshop" title="Baking Workshop" id="img3" ondblclick="zoomImage('img3')">
+                        <br><caption>Baking Workshop</caption>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' fill='orange'/></svg>" alt="Music Concert" title="Music Concert" id="img4" ondblclick="zoomImage('img4')">
+                        <br><caption>Music Concert</caption>
+                    </td>
+                    <td>
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' fill='purple'/></svg>" alt="Sports Day" title="Sports Day" id="img5" ondblclick="zoomImage('img5')">
+                        <br><caption>Sports Day</caption>
+                    </td>
+                    <td>
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' fill='yellow'/></svg>" alt="Science Fair" title="Science Fair" id="img6" ondblclick="zoomImage('img6')">
+                        <br><caption>Science Fair</caption>
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="register">
+            <h2>Register for an Event</h2>
+            <form id="registrationForm" onsubmit="submitForm(event)">
+                <p>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" required placeholder="Enter full name" autofocus>
+                </p>
+                <p>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required placeholder="Enter email address">
+                </p>
+                <p>
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" required placeholder="10-digit number" onblur="validatePhone()">
+                </p>
+                <p>
+                    <label for="eventDate">Date:</label>
+                    <input type="date" id="eventDate" required>
+                </p>
+                <p>
+                    <label for="eventType">Event Type:</label>
+                    <select id="eventType" onchange="showEventFee()">
+                        <option value="">Select Event</option>
+                        <option value="tech">Tech Meetup ($10)</option>
+                        <option value="art">Art Exhibition ($5)</option>
+                        <option value="baking">Baking Workshop ($15)</option>
+                    </select>
+                </p>
+                <p id="feeDisplay" class="highlight"></p>
+                <p>
+                    <label for="feedback">Message:</label>
+                    <textarea id="feedback" placeholder="Any special requests?" oninput="countCharacters()"></textarea>
+                    <br><span id="charCount">0 characters</span>
+                </p>
+                <button type="submit" id="submitBtn">Submit Registration</button>
+                <button type="button" onclick="clearPreferences()">Clear Preferences</button>
+            </form>
+            <p><output id="confirmationMessage"></output></p>
+        </section>
+
+        <section id="invite">
+            <h2>Video Invite</h2>
+            <video width="320" height="240" controls oncanplay="videoLoaded()">
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            </video>
+            <p id="videoStatus"></p>
+        </section>
+
+        <section id="geo">
+            <h2>Location Services</h2>
+            <button onclick="findNearbyEvents()">Find Nearby Events</button>
+            <p id="geoStatus"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 City Council. All rights reserved.</p>
+    </footer>
+
+    <script>
+        window.addEventListener('load', () => {
+            const savedEvent = localStorage.getItem('preferredEvent');
+            if (savedEvent) {
+                document.getElementById('eventType').value = savedEvent;
+                showEventFee();
+            }
+            alert('Community Event Portal Loaded!');
+        });
+
+        window.addEventListener('beforeunload', (e) => {
+            const name = document.getElementById('name').value;
+            if (name) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        function zoomImage(id) {
+            const img = document.getElementById(id);
+            img.classList.toggle('zoomed');
+        }
+
+        function validatePhone() {
+            const phone = document.getElementById('phone').value;
+            if (!/^\d{10}$/.test(phone)) {
+                alert('Please enter a valid 10-digit phone number.');
+            }
+        }
+
+        function showEventFee() {
+            const select = document.getElementById('eventType');
+            const value = select.value;
+            const feeDisplay = document.getElementById('feeDisplay');
+            let fee = '';
+            if (value === 'tech') fee = 'Fee: $10';
+            else if (value === 'art') fee = 'Fee: $5';
+            else if (value === 'baking') fee = 'Fee: $15';
+            feeDisplay.textContent = fee;
+            if (value) {
+                localStorage.setItem('preferredEvent', value);
+                sessionStorage.setItem('currentSessionEvent', value);
+            }
+        }
+
+        function countCharacters() {
+            const textarea = document.getElementById('feedback');
+            const countSpan = document.getElementById('charCount');
+            countSpan.textContent = `${textarea.value.length} characters`;
+        }
+
+        function videoLoaded() {
+            document.getElementById('videoStatus').textContent = 'Video ready to play';
+        }
+
+        function findNearbyEvents() {
+            const status = document.getElementById('geoStatus');
+            if (!navigator.geolocation) {
+                status.textContent = 'Geolocation is not supported by your browser';
+                return;
+            }
+            status.textContent = 'Locating...';
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    status.textContent = `Coordinates: Latitude ${position.coords.latitude}, Longitude ${position.coords.longitude}`;
+                },
+                (error) => {
+                    status.textContent = `Error: ${error.message}`;
+                },
+                { enableHighAccuracy: true, timeout: 5000 }
+            );
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const date = document.getElementById('eventDate').value;
+            const type = document.getElementById('eventType').value;
+            document.getElementById('confirmationMessage').value = `Thank you ${name}! You registered for ${type} on ${date}.`;
+        }
+
+        function clearPreferences() {
+            localStorage.removeItem('preferredEvent');
+            sessionStorage.removeItem('currentSessionEvent');
+            document.getElementById('eventType').value = '';
+            document.getElementById('feeDisplay').textContent = '';
+        }
+    </script>
+</body>
+</html>
