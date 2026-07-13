@@ -1,3 +1,5 @@
 Java FSE/
 week1/lib/
 *.class
+week2/maven/
+target/
